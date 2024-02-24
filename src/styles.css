@@ -1,0 +1,30 @@
+body {
+  background-color: hsl(229, 24%, 87%);
+}
+
+svg {
+    width: 210px;
+    height: auto;
+
+}
+
+.info-container {
+  max-width: 700px;
+  background-color: hsl(0, 0%, 100%);
+  margin-top: 100px;
+  border-radius: 10px;
+}
+
+.steps-container {
+    background-color: hsl(243, 100%, 62%);
+    margin: 10px;
+    border-radius: 5px;
+}
+
+.attribution {
+  font-size: 11px;
+  text-align: center;
+}
+.attribution a {
+  color: hsl(228, 45%, 44%);
+}
