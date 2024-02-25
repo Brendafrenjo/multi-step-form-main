@@ -34,28 +34,36 @@
     <div class="container info-container">
       <div class="row">
         <div class="col-3 steps-container">
-          <span class="steps-info"
-            >1
-            <div>Step 1</div>
-            Your info
+          <span class="steps-info">
+            <span><i class="fa-solid fa-1 numbers-icon"></i></span>
+            <span class="steps-sub-info">
+              <span class="step-number">Step 1</span>
+              <div class="main-info">Your info</div>
+            </span>
           </span>
           <br />
-          <span class="steps-info"
-            >2
-            <div>Step 2</div>
-            Select plan
+          <span class="steps-info">
+            <span><i class="fa-solid fa-2 numbers-icon"></i></span>
+            <span>
+              <span class="step-number">Step 2</span>
+              <div class="main-info">Select plan</div>
+            </span>
           </span>
           <br />
-          <span class="steps-info"
-            >3
-            <div>Step 3</div>
-            Add-ons
+          <span class="steps-info">
+            <span><i class="fa-solid fa-3 numbers-icon"></i></span>
+            <span>
+              <span class="step-number">Step 3</span>
+              <div class="main-info">Add-ons</div>
+            </span>
           </span>
           <br />
-          <span class="steps-info"
-            >4
-            <div>Step 4</div>
-            Summary
+          <span class="steps-info">
+            <span><i class="fa-solid fa-4 numbers-icon"></i></span>
+            <span>
+              <span class="step-number">Step 4</span>
+              <div class="main-info">Summary</div>
+            </span>
           </span>
           <div class="steps-svg">
             <svg
@@ -107,7 +115,7 @@
         </div>
         <div class="col-8 personal-info-container">
           <h1>Personal info</h1>
-          <p class="text-muted">
+          <p class="text-muted mb-4">
             Please provide your name, email address, and phone number.
           </p>
           <form>
@@ -115,21 +123,21 @@
             <input
               type="name"
               id="name"
-              class="name form-control mt-1 mb-2"
+              class="name form-control mt-1 mb-3"
               placeholder="e.g. Stephen King"
             />
-            <label for="name">Email Address</label>
+            <label for="email">Email Address</label>
             <input
-              type="name"
-              id="name"
-              class="name form-control mt-1 mb-2"
+              type="email"
+              id="email"
+              class="email form-control mt-1 mb-3"
               placeholder="e.g. stephenking@lorem.com"
             />
-            <label for="name">Phone Number</label>
+            <label for="phone-number">Phone Number</label>
             <input
-              type="name"
-              id="name"
-              class="name form-control mt-1 mb-2"
+              type="phone-number"
+              id="phone-number"
+              class="phone-number form-control mt-1 mb-2"
               placeholder="e.g. +1 234 567 890"
             />
             <button class="btn btn-info">Next Step</button>
