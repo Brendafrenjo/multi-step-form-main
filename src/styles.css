@@ -5,10 +5,19 @@ body {
 svg {
   width: 100%;
   height: auto;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+.steps-svg {
+  bottom: 0;
+  width: 100%;
+  
 }
 
 .info-container {
-  max-width: 700px;
+  max-width: 900px;
   background-color: hsl(0, 0%, 100%);
   margin-top: 100px;
   border-radius: 10px;
@@ -16,9 +25,10 @@ svg {
 
 .steps-container {
   background-color: hsl(243, 100%, 62%);
-  margin: 10px;
-  border-radius: 5px;
+  margin: 15px;
+  border-radius: 10px;
   color: hsl(0, 0%, 100%);
+  padding-top: 40px;
 }
 
 .steps-info {
@@ -31,7 +41,41 @@ svg {
 }
 
 .personal-info-container h1 {
-  margin-top: 30px;
+  margin-top: 50px;
+}
+
+.numbers-icon {
+  font-size: 10px;
+  margin-left: 20px;
+  margin-right: 10px;
+  padding: 10px;
+  padding-left: 12px;
+  padding-right: 12px;
+  border-radius: 50px;
+  border: 1px solid white;
+}
+
+.step-number {
+  font-size: 12px;
+  opacity: 0.7;
+  padding-bottom: 12px;
+  position: relative;
+  top: -10px;
+}
+
+.main-info {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  position: relative;
+  left: 67px;
+  top: -17px;
+}
+
+.phone-number,
+.email,
+.name {
+  padding: 10px;
 }
 
 .attribution {
