@@ -1,5 +1,5 @@
 body {
-  background-color: hsl(229, 24%, 87%);
+  background-color: hsl(217, 100%, 97%);
 }
 
 svg {
@@ -10,10 +10,48 @@ svg {
   padding: 0;
 }
 
+.primary-colors {
+  color: hsl(213, 96%, 18%);
+  color: hsl(243, 100%, 62%);
+  color: hsl(228, 100%, 84%);
+  color: hsl(206, 94%, 87%);
+  color: hsl(354, 84%, 57%);
+}
+
+.neutral-color {
+  color: hsl(231, 11%, 63%);
+  color: hsl(229, 24%, 87%);
+  color: hsl(217, 100%, 97%);
+  color: hsl(231, 100%, 99%);
+  color: hsl(0, 0%, 100%);
+}
+
 .steps-svg {
   bottom: 0;
   width: 100%;
-  
+}
+
+.personal-info-container h1 {
+  color: hsl(213, 96%, 18%);
+  font-weight: 700;
+}
+
+.btn-next-step {
+  background-color: hsl(213, 96%, 18%);
+  color: hsl(0, 0%, 100%);
+  width: 130px;
+  padding: 10px;
+  margin-top: 100px;
+}
+
+.btn-info {
+  display: flex;
+  justify-content: flex-end;
+}
+
+label {
+  color: hsl(213, 96%, 18%);
+  font-weight: 600;
 }
 
 .info-container {
