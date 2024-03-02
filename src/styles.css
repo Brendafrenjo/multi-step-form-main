@@ -98,7 +98,7 @@ label {
   width: 100%;
 }
 
-.personal-info-container h1 {
+h1 {
   color: hsl(213, 96%, 18%);
   font-weight: 700;
 }
@@ -163,6 +163,29 @@ label {
 .email,
 .name {
   padding: 10px;
+}
+
+.select-plan .payment {
+  margin: 5px;
+  border: 1px solid hsl(229, 24%, 87%);
+  border-radius: 5px;
+  
+}
+
+.months-free {
+  font-size: 11px;
+  color: hsl(213, 96%, 18%);
+  font-weight: 600;
+}
+
+.year {
+  font-size: 14px;
+  color: hsl(231, 11%, 63%);
+}
+
+.title {
+  color: hsl(213, 96%, 18%);
+  font-weight: 600;
 }
 
 .attribution {
