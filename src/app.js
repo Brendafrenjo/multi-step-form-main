@@ -1,9 +1,9 @@
 function handleNextPage(event) {
   event.preventDefault();
-  const clientName = document.getElementById("name");
+  const clientName = document.getElementById("name").value;
   const emailInput = document.getElementById("email");
   const selectPlan = document.querySelector("select-plan");
-   const fisrtStepContainer = document.querySelector(".first-step-container");
+  const fisrtStepContainer = document.querySelector(".first-step-container");
   const emailAddress = emailInput.value.trim();
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const clientNumber = document.getElementById("phone-number");
@@ -14,7 +14,6 @@ function handleNextPage(event) {
     emailAddress.length > 0 &&
     emailPattern.test(emailAddress)
   ) {
-   
     fisrtStepContainer.style.display = "none";
     errorMessage.style.display = "none";
     selectPlan.style.display = "block";
@@ -29,3 +28,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const nextStep = document.querySelector(".btn-next-step");
   nextStep.addEventListener("submit", handleNextPage);
 });
+
+const firstIcon = document.querySelector(".fa-1");
+firstIcon.classList.add(".active");
