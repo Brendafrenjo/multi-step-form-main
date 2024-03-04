@@ -172,9 +172,26 @@ h1 {
 }
 
 .select-plan .payment {
-  margin: 5px;
+  margin: 7px;
   border: 1px solid hsl(229, 24%, 87%);
   border-radius: 5px;
+  width: 114px
+}
+
+.select-plan .payment-icon {
+  font-size: 15px;
+  padding: 10px;
+  padding-left: 13px;
+  padding-right: 13px;
+  margin-top: 15px;
+  margin-bottom: 30px;
+  border-radius: 50px;
+  border: 1px solid hsl(0, 0%, 100%);
+}
+
+.fa-chess-pawn {
+  background-color: hsl(23, 100%, 75%);
+  color: hsl(0, 0%, 100%);
 }
 
 .months-free {
