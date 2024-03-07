@@ -321,17 +321,29 @@ h1 {
   font-weight: 500;
 }
 
+.plus-plus {
+  position: relative;
+  top: 13px;
+}
+
 .finishing-up a {
   color: hsl(231, 11%, 63%);
 }
 
-.finish-service {
+.finish-service,
+.month-total {
   color: hsl(231, 11%, 63%);
 }
 
-.finishing-up-change {
+.finishing-up-change,
+.total-per-month {
   display: flex;
   justify-content: space-between;
+}
+
+.price-total {
+  color: hsl(243, 100%, 62%);
+  font-weight: 700;
 }
 
 .confirm-button {
