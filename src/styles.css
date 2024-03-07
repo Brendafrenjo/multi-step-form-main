@@ -310,6 +310,34 @@ h1 {
   margin-bottom: 12px;
 }
 
+.type-2 {
+  margin-bottom: 0;
+  padding-bottom: 20px;
+}
+
+.plus-plus,
+.arcade-monthly {
+  color: hsl(213, 96%, 18%) !important;
+  font-weight: 500;
+}
+
+.finishing-up a {
+  color: hsl(231, 11%, 63%);
+}
+
+.finish-service {
+  color: hsl(231, 11%, 63%);
+}
+
+.finishing-up-change {
+  display: flex;
+  justify-content: space-between;
+}
+
+.confirm-button {
+  background-color: hsl(243, 100%, 62%);
+}
+
 .attribution {
   font-size: 11px;
   text-align: center;
