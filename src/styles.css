@@ -14,6 +14,13 @@ label {
   justify-content: space-between;
 }
 
+.select-plan,
+.pick-add-ons,
+.finishing-up,
+.thank-you {
+  display: block;
+}
+
 .name-label,
 .email-label,
 .phone-number-label {
@@ -25,7 +32,8 @@ label {
   display: none;
 }
 
-.mobile-svg {
+.mobile-svg,
+.mobile-steps-container {
   position: absolute;
   top: 0;
   left: 0;
@@ -43,6 +51,7 @@ label {
   background-color: hsl(0, 0%, 100%);
   margin-top: 50px;
   border-radius: 10px;
+  margin-bottom: 10px;
 }
 
 .steps-container {
@@ -139,13 +148,18 @@ h1 {
   padding-left: 12px;
   padding-right: 12px;
   border-radius: 50px;
-  border: 1px solid white;
+  border: 1px solid hsl(0, 0%, 100%);
 }
 
-.numbers-icon:active {
+.active-style {
   background-color: hsl(228, 100%, 84%);
-  color: transparent;
-  border: hsl(228, 100%, 84%);
+  color: hsl(213, 96%, 18%) !important;
+  border: 1px solid hsl(228, 100%, 84%);
+  padding: 11px;
+  padding-left: 13px;
+  padding-right: 13px;
+  border-radius: 50px;
+  font-weight: 800;
 }
 
 .step-number {
@@ -384,14 +398,15 @@ h1 {
   .mobile-steps-container {
     display: flex;
     justify-content: center;
+    align-items: center;
   }
 
   .info-container {
     position: relative;
-    top: -23px;
+    top: 60px;
     margin-left: 15px;
     margin-right: 15px;
-    max-width: 345px;
+    max-width: 340px;
   }
 
   .mobile-steps-container .numbers-icon {
@@ -406,5 +421,28 @@ h1 {
   .personal-info-container {
     padding-left: 20px;
     padding-right: 20px;
+  }
+
+  .payment-plan {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .payment-plan-icon {
+    display: flex;
+  }
+
+  .select-plan .payment {
+    width: 300px;
+    padding-top: 20px;
+  }
+
+  .payment-icon {
+    margin-right: 20px;
+  }
+
+  .payment-content-info {
+    margin-right: 30px;
   }
 }
