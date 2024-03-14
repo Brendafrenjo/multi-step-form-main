@@ -18,7 +18,7 @@ label {
 .pick-add-ons,
 .finishing-up,
 .thank-you {
-  display: block;
+  display: none;
 }
 
 .name-label,
@@ -399,6 +399,20 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  .first-step-container,
+  .select-plan,
+  .pick-add-ons,
+  .finishing-up,
+  .thank-you {
+    display: flex;
+    justify-content: center;
+  }
+
+  .centered {
+    display: flex;
+    justify-content: center;
   }
 
   .info-container {
