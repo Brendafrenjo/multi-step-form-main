@@ -5,28 +5,46 @@ function handleNextPage(event) {
   const userPhone = document.getElementById("phone-number").value.trim();
   const firstStepContainer = document.querySelector(".first-step-container");
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const phonePattern = /^\+?\d{1,3}(\s?\d{3}){3}$/;
   const selectPlan = document.querySelector(".select-plan");
-  const errorMessages = document.querySelectorAll(".error-message");
-  errorMessages.forEach((message) => (message.style.display = "none"));
 
-  if (
-    userName.length > 0 &&
-    emailInput.length > 0 &&
-    userPhone.length > 0 &&
-    emailPattern.test(emailInput) &&
-    phonePattern.test(userName)
-  ) {
-    //loads to the next page if all information is entered
-    alert("registration successful");
+  //error message
+  const nameError = document.querySelector(".name-error");
+  const emailError = document.querySelector(".email-error");
+  const phoneError = document.querySelector(".phone-error");
+  const emailFormatError = document.querySelector(".email-format-error");
+
+  nameError.style.display = "none";
+  emailError.style.display = "none";
+  phoneError.style.display = "none";
+  emailFormatError.style.display = "none";
+
+  //Track indivdual errors
+  let hasError = false;
+
+  //Check individual fields
+  if (userName.length === 0) {
+    nameError.style.display = "inline-block";
+    hasError = true;
+  }
+
+  if (emailInput.length === 0) {
+    emailError.style.display = "inline-block";
+    hasError = true;
+  } else {
+    if (!emailPattern.test(emailInput)) {
+      emailFormatError.style.display = "inline-block";
+      hasError = true;
+    }
+  }
+
+  if (userPhone.length === 0) {
+    phoneError.style.display = "inline-block";
+    hasError = true;
+  }
+
+  if (!hasError) {
     firstStepContainer.style.display = "none";
     selectPlan.style.display = "block";
-  } else {
-    //provides error message
-    alert("registration failure");
-    errorMessages.forEach(
-      (message) => (message.style.display = "inline-block")
-    );
   }
 }
 

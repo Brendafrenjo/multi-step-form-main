@@ -27,8 +27,12 @@ label {
   color: hsl(213, 96%, 18%);
 }
 
-.error-message {
-  color: hsl(354, 84%, 57%);
+.name-error,
+.email-error,
+.phone-error,
+.email-format-error,
+.phone-format-error {
+  color: hsl(354, 84%, 57%) !important;
   display: none;
 }
 

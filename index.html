@@ -179,7 +179,7 @@
             <form class="the-form">
               <label for="name"
                 ><span class="name-label">Name</span>
-                <span class="error-message">The field is required</span></label
+                <span class="name-error">The field is required</span></label
               >
               <input
                 type="name"
@@ -189,7 +189,10 @@
               />
               <label for="email"
                 ><span class="email-label">Email Address</span
-                ><span class="error-message">Valid email required</span></label
+                ><span
+                  ><p class="email-error">This field is required</p>
+                  <p class="email-format-error">Invalid email format</p></span
+                ></label
               >
               <input
                 type="email"
@@ -199,7 +202,7 @@
               />
               <label for="phone-number"
                 ><span class="phone-number-label">Phone Number</span>
-                <span class="error-message">The field is required</span>
+                <span class="phone-error">This field is required</span>
               </label>
               <input
                 type="phone-number"
@@ -935,7 +938,10 @@
       Challenge by
       <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
         >Frontend Mentor</a
-      >. Coded by <a href="https://github.com/Brendafrenjo/multi-step-form-main.git">Brenda Frenjo</a>.
+      >. Coded by
+      <a href="https://github.com/Brendafrenjo/multi-step-form-main.git"
+        >Brenda Frenjo</a
+      >.
     </div>
     <script src="src/app.js"></script>
   </body>
