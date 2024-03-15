@@ -24,21 +24,26 @@ function handleNextPage(event) {
   //Check individual fields
   if (userName.length === 0) {
     nameError.style.display = "inline-block";
+    document.getElementById("name").style.borderColor = "hsl(354, 84%, 57%)";
     hasError = true;
   }
 
   if (emailInput.length === 0) {
     emailError.style.display = "inline-block";
+    document.getElementById("email").style.borderColor = "hsl(354, 84%, 57%)";
     hasError = true;
   } else {
     if (!emailPattern.test(emailInput)) {
       emailFormatError.style.display = "inline-block";
+      document.getElementById("email").style.borderColor = "hsl(354, 84%, 57%)";
       hasError = true;
     }
   }
 
   if (userPhone.length === 0) {
     phoneError.style.display = "inline-block";
+    document.getElementById("phone-number").style.borderColor =
+      "hsl(354, 84%, 57%)";
     hasError = true;
   }
 
@@ -48,7 +53,13 @@ function handleNextPage(event) {
   }
 }
 
+function handleChangetoAddOns(event) {
+  event.preventDefault();
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   const submitForm = document.querySelector(".the-form");
+  const selectPlan = document.querySelector(".payment-plan-button");
   submitForm.addEventListener("submit", handleNextPage);
+  selectPlan.addEventListener("click", handleChangetoAddOns);
 });
