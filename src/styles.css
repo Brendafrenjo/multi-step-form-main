@@ -195,6 +195,7 @@ h1 {
   border-radius: 5px;
   width: 114px;
   padding-bottom: 10px;
+  cursor: pointer;
 }
 
 .select-plan .payment-icon {

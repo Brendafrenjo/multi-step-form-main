@@ -60,6 +60,10 @@ function handleChangetoAddOns(event) {
 document.addEventListener("DOMContentLoaded", function () {
   const submitForm = document.querySelector(".the-form");
   const selectPlan = document.querySelector(".payment-plan-button");
+  const paymentContainers = document.querySelectorAll(".payment");
+
   submitForm.addEventListener("submit", handleNextPage);
   selectPlan.addEventListener("click", handleChangetoAddOns);
+
+  paymentContainers.forEach((container) => {});
 });
