@@ -90,6 +90,10 @@ label {
   left: calc(100% + -240px);
 }
 
+.blue-border {
+  color: hsl(213, 96%, 18%);
+}
+
 .primary-colors {
   color: hsl(213, 96%, 18%);
   color: hsl(243, 100%, 62%);

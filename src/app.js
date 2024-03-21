@@ -65,5 +65,9 @@ document.addEventListener("DOMContentLoaded", function () {
   submitForm.addEventListener("submit", handleNextPage);
   selectPlan.addEventListener("click", handleChangetoAddOns);
 
-  paymentContainers.forEach((container) => {});
+  paymentContainers.forEach((container) => {
+    container.addEventListener("click", function () {
+      this.classList.toggle("blue-border");
+    });
+  });
 });
