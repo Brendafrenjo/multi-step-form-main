@@ -277,6 +277,8 @@ h1 {
   top: 90px;
   color: hsl(231, 11%, 63%);
   font-weight: 500;
+  display: flex;
+  justify-content: space-between;
 }
 
 .year {

@@ -57,17 +57,21 @@ function handleChangetoAddOns(event) {
   event.preventDefault();
 }
 
+function handlePrevious() {
+  const firstStepContainer = document.querySelector(".first-step-container");
+  const selectPlan = document.querySelector(".select-plan");
+
+  firstStepContainer.style.display = "block";
+  selectPlan.style.display = "none";
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   const submitForm = document.querySelector(".the-form");
   const selectPlan = document.querySelector(".payment-plan-button");
-  const paymentContainers = document.querySelectorAll(".payment");
+  const firtsGoBack = document.querySelector(".first-go-back");
 
   submitForm.addEventListener("submit", handleNextPage);
   selectPlan.addEventListener("click", handleChangetoAddOns);
+  firtsGoBack.addEventListener("click", handlePrevious);
 
-  paymentContainers.forEach((container) => {
-    container.addEventListener("click", function () {
-      this.classList.toggle("blue-border");
-    });
-  });
 });
