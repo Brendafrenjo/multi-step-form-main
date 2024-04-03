@@ -55,6 +55,14 @@ function handleNextPage(event) {
 
 function handleChangetoAddOns(event) {
   event.preventDefault();
+  const selectPlan = document.querySelector(".select-plan");
+
+  if (document.querySelector(".payment:checked")) {
+    selectPlan.style.display = "none";
+    document.querySelector(".addOns").style.display = "block";
+  } else {
+    alert("Please select a payment plan");
+  }
 }
 
 function handlePrevious() {
@@ -68,10 +76,17 @@ function handlePrevious() {
 document.addEventListener("DOMContentLoaded", function () {
   const submitForm = document.querySelector(".the-form");
   const selectPlan = document.querySelector(".payment-plan-button");
-  const firtsGoBack = document.querySelector(".first-go-back");
+  const firstGoBack = document.querySelector(".first-go-back");
 
   submitForm.addEventListener("submit", handleNextPage);
   selectPlan.addEventListener("click", handleChangetoAddOns);
-  firtsGoBack.addEventListener("click", handlePrevious);
+  firstGoBack.addEventListener("click", handlePrevious);
 
+  const payment = document.querySelectorAll(".payment");
+
+  payment.forEach(function (payment) {
+    payment.addEventListener("click", function () {
+      this.style.borderColor = "hsl(213, 96%, 18%)";
+    });
+  });
 });
