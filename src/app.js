@@ -53,18 +53,6 @@ function handleNextPage(event) {
   }
 }
 
-function handleChangetoAddOns(event) {
-  event.preventDefault();
-  const selectPlan = document.querySelector(".select-plan");
-
-  if (document.querySelector(".payment:checked")) {
-    selectPlan.style.display = "none";
-    document.querySelector(".addOns").style.display = "block";
-  } else {
-    alert("Please select a payment plan");
-  }
-}
-
 function handlePrevious() {
   const firstStepContainer = document.querySelector(".first-step-container");
   const selectPlan = document.querySelector(".select-plan");
@@ -79,14 +67,72 @@ document.addEventListener("DOMContentLoaded", function () {
   const firstGoBack = document.querySelector(".first-go-back");
 
   submitForm.addEventListener("submit", handleNextPage);
-  selectPlan.addEventListener("click", handleChangetoAddOns);
   firstGoBack.addEventListener("click", handlePrevious);
 
-  const payment = document.querySelectorAll(".payment");
+  selectPlan.addEventListener("click", function (event) {
+    event.preventDefault();
 
-  payment.forEach(function (payment) {
+    //Check if a payment plan has been selected
+    if (document.querySelector(".payment:checked")) {
+      selectPlan.style.display = "none";
+      document.querySelector(".addOns").style.display = "block";
+    } else {
+      alert("Please select a payment plan");
+    }
+  });
+
+  const payments = document.querySelectorAll(".payment");
+
+  payments.forEach(function (payment) {
     payment.addEventListener("click", function () {
-      this.style.borderColor = "hsl(213, 96%, 18%)";
+      const isActive = payment.classList.contains("active");
+      if (!isActive) {
+        // Remove active class from any previously active payments
+        const activePayment = document.querySelector(".payment.active");
+        if (activePayment) {
+          activePayment.classList.remove("active");
+        }
+        //Add active class to the clicked payment
+        payment.classList.add("active");
+      } else {
+        //If the clicked payment is already active, remove active class
+        payment.classList.remove("active");
+      }
     });
+  });
+
+  const firstToggle = document.querySelector(".first-toggle-icon");
+  const secondToggle = document.querySelector(".second-toggle-icon");
+  const freeMonths = document.querySelectorAll(".months-free");
+  const spaceBetween = document.querySelector(".space-between");
+  const yearly = document.querySelector(".yearly-sector");
+  const monthly = document.querySelector(".monthly-section");
+  const perMonth = document.querySelectorAll(".per-month");
+  const perYear = document.querySelectorAll(".per-year");
+
+  firstToggle.addEventListener("click", function () {
+    firstToggle.style.display = "none";
+    secondToggle.style.display = "inline-block";
+    freeMonths.forEach(function (month) {
+      month.style.display = "inline-block";
+    });
+    perMonth.forEach((month) => (month.style.display = "none"));
+    perYear.forEach((year) => (year.style.display = "inline-block"));
+    spaceBetween.style.display = "none";
+    yearly.style.color = "hsl(213, 96%, 18%)";
+    monthly.style.color = "hsl(231, 11%, 63%)";
+  });
+
+  secondToggle.addEventListener("click", function () {
+    firstToggle.style.display = "inline-block";
+    secondToggle.style.display = "none";
+    freeMonths.forEach(function (month) {
+      month.style.display = "none";
+    });
+    perMonth.forEach((month) => (month.style.display = "inline-block"));
+    perYear.forEach((year) => (year.style.display = "none"));
+    spaceBetween.style.display = "inline-block";
+    yearly.style.color = "hsl(231, 11%, 63%)";
+    monthly.style.color = "hsl(213, 96%, 18%)";
   });
 });
