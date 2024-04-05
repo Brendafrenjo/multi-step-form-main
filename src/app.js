@@ -65,6 +65,11 @@ document.addEventListener("DOMContentLoaded", function () {
   const submitForm = document.querySelector(".the-form");
   const selectPlan = document.querySelector(".payment-plan-button");
   const firstGoBack = document.querySelector(".first-go-back");
+const addOns = document.querySelector(".addOns");
+
+const paymentButtons = document.querySelectorAll(".payment");
+const toggle = document.querySelector(".toggle");
+const nextStepButton = document.querySelector(".btn-next-step");
 
   submitForm.addEventListener("submit", handleNextPage);
   firstGoBack.addEventListener("click", handlePrevious);
@@ -72,34 +77,25 @@ document.addEventListener("DOMContentLoaded", function () {
   selectPlan.addEventListener("click", function (event) {
     event.preventDefault();
 
-    //Check if a payment plan has been selected
-    if (document.querySelector(".payment:checked")) {
-      selectPlan.style.display = "none";
-      document.querySelector(".addOns").style.display = "block";
-    } else {
-      alert("Please select a payment plan");
-    }
-  });
-
-  const payments = document.querySelectorAll(".payment");
-
-  payments.forEach(function (payment) {
-    payment.addEventListener("click", function () {
-      const isActive = payment.classList.contains("active");
-      if (!isActive) {
-        // Remove active class from any previously active payments
-        const activePayment = document.querySelector(".payment.active");
-        if (activePayment) {
-          activePayment.classList.remove("active");
-        }
-        //Add active class to the clicked payment
-        payment.classList.add("active");
+   paymentButtons.forEach(function(payment) {
+    payment.addEventListener("change", function() {
+      if (document.querySelector(".payment:checked")) {
+        selectPlan.style.display = "none";
+        addOns.style.display = "block";
       } else {
-        //If the clicked payment is already active, remove active class
-        payment.classList.remove("active");
+        alert("Please select a payment plan");
       }
     });
   });
+
+  nextStepButton.addEventListener("click", function() {
+    if (!document.querySelector(".payment:checked")) {
+      alert("Please select a payment plan");
+    } else {
+      // Proceed to the next step
+    }
+  });
+
 
   const firstToggle = document.querySelector(".first-toggle-icon");
   const secondToggle = document.querySelector(".second-toggle-icon");
