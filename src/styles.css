@@ -15,7 +15,7 @@ label {
 }
 
 .select-plan,
-.pick-add-ons,
+.pick-add-ons-container,
 .finishing-up,
 .thank-you {
   display: none;

@@ -63,39 +63,50 @@ function handlePrevious() {
 
 document.addEventListener("DOMContentLoaded", function () {
   const submitForm = document.querySelector(".the-form");
-  const selectPlan = document.querySelector(".payment-plan-button");
+  const selectPlanButton = document.querySelector(".payment-plan-button");
   const firstGoBack = document.querySelector(".first-go-back");
-const addOns = document.querySelector(".addOns");
-
-const paymentButtons = document.querySelectorAll(".payment");
-const toggle = document.querySelector(".toggle");
-const nextStepButton = document.querySelector(".btn-next-step");
+  const firstStepContainer = document.querySelector(".first-step-container");
+  const selectPlan = document.querySelector(".select-plan");
+  const addOns = document.querySelector(".pick-add-ons-container");
 
   submitForm.addEventListener("submit", handleNextPage);
   firstGoBack.addEventListener("click", handlePrevious);
 
-  selectPlan.addEventListener("click", function (event) {
+  selectPlanButton.addEventListener("click", function (event) {
     event.preventDefault();
 
-   paymentButtons.forEach(function(payment) {
-    payment.addEventListener("change", function() {
-      if (document.querySelector(".payment:checked")) {
-        selectPlan.style.display = "none";
-        addOns.style.display = "block";
-      } else {
-        alert("Please select a payment plan");
-      }
-    });
-  });
-
-  nextStepButton.addEventListener("click", function() {
-    if (!document.querySelector(".payment:checked")) {
-      alert("Please select a payment plan");
+    //Check if a payment plan has been selected
+    const selectedPayment = document.querySelector(".payment.active");
+    console.log("Selected Payment:", selectedPayment);
+    if (selectedPayment) {
+      selectPlan.style.display = "none";
+      firstStepContainer.style.display = "none";
+      addOns.style.display = "block";
     } else {
-      // Proceed to the next step
+      alert("Please select a payment plan");
     }
   });
 
+  const payments = document.querySelectorAll(".payment");
+  console.log("Payments:", payments);
+
+  payments.forEach(function (payment) {
+    payment.addEventListener("click", function () {
+      const isActive = payment.classList.contains("active");
+      if (!isActive) {
+        // Remove active class from any previously active payments
+        const activePayment = document.querySelector(".payment.active");
+        if (activePayment) {
+          activePayment.classList.remove("active");
+        }
+        //Add active class to the clicked payment
+        payment.classList.add("active");
+      } else {
+        //If the clicked payment is already active, remove active class
+        payment.classList.remove("active");
+      }
+    });
+  });
 
   const firstToggle = document.querySelector(".first-toggle-icon");
   const secondToggle = document.querySelector(".second-toggle-icon");
