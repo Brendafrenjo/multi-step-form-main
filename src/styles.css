@@ -15,13 +15,12 @@ label {
 }
 
 .select-plan,
-.pick-add-ons-container,
 .finishing-up,
 .thank-you {
   display: none;
 }
 
-.name-label,
+.pick-add-ons-container .name-label,
 .email-label,
 .phone-number-label {
   color: hsl(213, 96%, 18%);
@@ -213,7 +212,8 @@ h1 {
   border: 1px solid hsl(0, 0%, 100%);
 }
 
-.payment.active {
+.payment.active,
+.online-service.active {
   background-color: hsl(231, 100%, 99%);
   border: 1px solid hsl(213, 96%, 18%);
 }
@@ -288,14 +288,15 @@ h1 {
   padding: 12px;
 }
 
-.first-go-back {
+.first-go-back,
+.second-go-back {
   display: flex;
   justify-content: space-between;
 }
 
 .go-back {
   position: relative;
-  top: 50px;
+  top: 54px;
   color: hsl(231, 11%, 63%);
   font-weight: 500;
 }
@@ -345,8 +346,13 @@ h1 {
   color: hsl(231, 11%, 63%);
 }
 
-.plus-month {
+.plus-month,
+.plus-year {
   color: hsl(243, 100%, 62%);
+}
+
+.plus-year {
+  display: none;
 }
 
 .online-service {

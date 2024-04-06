@@ -64,10 +64,11 @@ function handlePrevious() {
 document.addEventListener("DOMContentLoaded", function () {
   const submitForm = document.querySelector(".the-form");
   const selectPlanButton = document.querySelector(".payment-plan-button");
+  const addOnsButtton = document.querySelector(".add-ons-button");
   const firstGoBack = document.querySelector(".first-go-back");
   const firstStepContainer = document.querySelector(".first-step-container");
   const selectPlan = document.querySelector(".select-plan");
-  const addOns = document.querySelector(".pick-add-ons-container");
+  const addOns = document.querySelector(".pick-add-ons");
 
   submitForm.addEventListener("submit", handleNextPage);
   firstGoBack.addEventListener("click", handlePrevious);
@@ -141,5 +142,26 @@ document.addEventListener("DOMContentLoaded", function () {
     spaceBetween.style.display = "inline-block";
     yearly.style.color = "hsl(231, 11%, 63%)";
     monthly.style.color = "hsl(213, 96%, 18%)";
+  });
+
+  addOnsButtton.addEventListener("click", function (event) {
+    event.preventDefault();
+    const checkBoxes = document.querySelectorAll(".checkbox");
+    const onlineService = document.querySelector(".online-service");
+
+    checkBoxes.forEach( function (checkBox) {
+      checkBox.addEventListener("check", function () {
+        const isActive = checkBox.classList.contains("active");
+
+        if (!isActive) {
+          const activeCheckbox = document.querySelector(".checkbox.active");
+          if (activeCheckbox) {
+            onlineService.classList.add("active");
+          } else {
+            onlineService.classList.remove("active");
+          }
+        }
+      });
+    });
   });
 });
