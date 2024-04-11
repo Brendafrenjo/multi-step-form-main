@@ -201,6 +201,15 @@ h1 {
   cursor: pointer;
 }
 
+.select-plan .payment:hover,
+.online-service:hover {
+  cursor: pointer;
+}
+
+.the-space {
+  padding: 10px;
+}
+
 .select-plan .payment-icon {
   font-size: 15px;
   padding: 10px;
@@ -214,7 +223,7 @@ h1 {
 
 .payment.active,
 .online-service.active {
-  background-color: hsl(231, 100%, 99%);
+  background-color: hsl(217, 100%, 97%);
   border: 1px solid hsl(213, 96%, 18%);
 }
 

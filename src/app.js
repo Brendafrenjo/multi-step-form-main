@@ -61,6 +61,15 @@ function handlePrevious() {
   selectPlan.style.display = "none";
 }
 
+function handleReturnToSelectPlan() { 
+  const selectPlan = document.querySelector(".select-plan");
+  const addOns = document.querySelector(".pick-add-ons");
+
+  selectPlan.style.display = "block";
+  addOns.style.display = "none";
+
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   const submitForm = document.querySelector(".the-form");
   const selectPlanButton = document.querySelector(".payment-plan-button");
@@ -69,9 +78,12 @@ document.addEventListener("DOMContentLoaded", function () {
   const firstStepContainer = document.querySelector(".first-step-container");
   const selectPlan = document.querySelector(".select-plan");
   const addOns = document.querySelector(".pick-add-ons");
+  const finishingUp = document.querySelector(".finishing-up");
+  const secondGoBack = document.querySelector(".second-go-back");
 
   submitForm.addEventListener("submit", handleNextPage);
   firstGoBack.addEventListener("click", handlePrevious);
+  secondGoBack.addEventListener("click", handleReturnToSelectPlan);
 
   selectPlanButton.addEventListener("click", function (event) {
     event.preventDefault();
@@ -95,11 +107,6 @@ document.addEventListener("DOMContentLoaded", function () {
     payment.addEventListener("click", function () {
       const isActive = payment.classList.contains("active");
       if (!isActive) {
-        // Remove active class from any previously active payments
-        const activePayment = document.querySelector(".payment.active");
-        if (activePayment) {
-          activePayment.classList.remove("active");
-        }
         //Add active class to the clicked payment
         payment.classList.add("active");
       } else {
@@ -146,22 +153,33 @@ document.addEventListener("DOMContentLoaded", function () {
 
   addOnsButtton.addEventListener("click", function (event) {
     event.preventDefault();
+
+    //To check if any checkbox has been checked
+    const selectedCheckBox = document.querySelector(".checkbox:checked");
+    if (selectedCheckBox) {
+      addOns.style.display = "none";
+      firstStepContainer.style.display = "none";
+      finishingUp.style.display = "block";
+    } else {
+      alert("Please select an add-on");
+    }
+
     const checkBoxes = document.querySelectorAll(".checkbox");
-    const onlineService = document.querySelector(".online-service");
+    console.log("Checkboxes:", checkBoxes);
 
-    checkBoxes.forEach( function (checkBox) {
-      checkBox.addEventListener("check", function () {
-        const isActive = checkBox.classList.contains("active");
+    checkBoxes.forEach(function (checkBox) {
+      checkBox.addEventListener("change", function () {
+        const isActive = checkBox.checked;
+        const onlineService = checkBox.closest(".online-service");
 
-        if (!isActive) {
-          const activeCheckbox = document.querySelector(".checkbox.active");
-          if (activeCheckbox) {
-            onlineService.classList.add("active");
-          } else {
-            onlineService.classList.remove("active");
-          }
+        if (isActive) {
+          onlineService.classList.add("active");
+        } else {
+          onlineService.classList.remove("active");
         }
       });
+      //Triger change event to apply initial state
+      checkBox.dispatchEvent(new Event("change"));
     });
   });
 });
