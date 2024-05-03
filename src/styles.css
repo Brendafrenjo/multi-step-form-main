@@ -15,7 +15,6 @@ label {
 }
 
 .select-plan,
-.finishing-up,
 .thank-you {
   display: none;
 }
@@ -308,6 +307,10 @@ h1 {
   top: 54px;
   color: hsl(231, 11%, 63%);
   font-weight: 500;
+}
+
+.confirm-go-back {
+  top: 86px;
 }
 
 .year {

@@ -80,6 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const addOns = document.querySelector(".pick-add-ons");
   const finishingUp = document.querySelector(".finishing-up");
   const secondGoBack = document.querySelector(".second-go-back");
+const thirdGoBack = document.querySelector(".")
 
   submitForm.addEventListener("submit", handleNextPage);
   firstGoBack.addEventListener("click", handlePrevious);
