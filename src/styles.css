@@ -16,7 +16,7 @@ label {
 
 .select-plan,
 .thank-you {
-  display: none;
+  display: block;
 }
 
 .pick-add-ons-container .name-label,
@@ -382,7 +382,8 @@ h1 {
 }
 
 .plus-plus,
-.arcade-monthly {
+.arcade-monthly,
+.online-plus-plus {
   color: hsl(213, 96%, 18%) !important;
   font-weight: 500;
 }

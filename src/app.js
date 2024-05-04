@@ -61,14 +61,45 @@ function handlePrevious() {
   selectPlan.style.display = "none";
 }
 
-function handleReturnToSelectPlan() { 
+function handleReturnToSelectPlan() {
   const selectPlan = document.querySelector(".select-plan");
   const addOns = document.querySelector(".pick-add-ons");
 
   selectPlan.style.display = "block";
   addOns.style.display = "none";
-
 }
+
+handleReturnToAddOns = () => {
+  const addOns = document.querySelector(".pick-add-ons");
+  const finishingUp = document.querySelector(".finishing-up");
+
+  addOns.style.display = "block";
+  finishingUp.style.display = "none";
+};
+
+handleFinishingPrice = (e) => {
+  e.preventDefault();
+  const monthlyPrice = document.querySelectorAll(".finishing-month");
+  const yearlyPrice = document.querySelectorAll(".finishing-year");
+
+  if (yearlyPrice[0].style.display === "none") {
+    monthlyPrice.forEach(function (month) {
+      month.style.display = "none";
+    });
+
+    yearlyPrice.forEach(function (year) {
+      year.style.display = "inline-block";
+    });
+  } else {
+    monthlyPrice.forEach(function (month) {
+      month.style.display = "inline-block";
+    });
+
+    yearlyPrice.forEach(function (year) {
+      year.style.display = "none";
+    });
+  }
+};
 
 document.addEventListener("DOMContentLoaded", function () {
   const submitForm = document.querySelector(".the-form");
@@ -80,11 +111,14 @@ document.addEventListener("DOMContentLoaded", function () {
   const addOns = document.querySelector(".pick-add-ons");
   const finishingUp = document.querySelector(".finishing-up");
   const secondGoBack = document.querySelector(".second-go-back");
-const thirdGoBack = document.querySelector(".")
+  const thirdGoBack = document.querySelector(".confirm-go-back");
+  const changeAccess = document.querySelector(".change-access");
 
   submitForm.addEventListener("submit", handleNextPage);
   firstGoBack.addEventListener("click", handlePrevious);
   secondGoBack.addEventListener("click", handleReturnToSelectPlan);
+  thirdGoBack.addEventListener("click", handleReturnToAddOns);
+  changeAccess.addEventListener("click", handleFinishingPrice);
 
   selectPlanButton.addEventListener("click", function (event) {
     event.preventDefault();
