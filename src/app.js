@@ -113,6 +113,18 @@ document.addEventListener("DOMContentLoaded", function () {
   const secondGoBack = document.querySelector(".second-go-back");
   const thirdGoBack = document.querySelector(".confirm-go-back");
   const changeAccess = document.querySelector(".change-access");
+  const finishingMonth = document.querySelector(".finishing-month");
+  const finishingYear = document.querySelector(".finishing-year");
+  const finishingSelectedPlan = document.querySelector(
+    ".finishing-selected-plan"
+  );
+
+  const storedPlan = JSON.parse(localStorage.getItem("finishingSelectedPlan"));
+  if (storedPlan) {
+
+  }
+
+  select - plan - step;
 
   submitForm.addEventListener("submit", handleNextPage);
   firstGoBack.addEventListener("click", handlePrevious);
@@ -142,6 +154,10 @@ document.addEventListener("DOMContentLoaded", function () {
     payment.addEventListener("click", function () {
       const isActive = payment.classList.contains("active");
       if (!isActive) {
+        //check if there is an actice clas already
+        payments.forEach(function (p) {
+          p.classList.remove("active");
+        });
         //Add active class to the clicked payment
         payment.classList.add("active");
       } else {

@@ -358,13 +358,13 @@
               </svg>
             </div>
           </div>
-          <div class="col-sm-7 personal-info-container">
+          <div class="col-sm-7 personal-info-container select-plan-step">
             <h1>Select your plan</h1>
             <p class="text-muted mb-4">
               You have the option of monthly or yearly billing.
             </p>
             <div class="row payment-plan">
-              <div class="col-sm-3 payment first-payment">
+              <div class="col-sm-3 payment first-payment" id="arcade">
                 <span class="payment-plan-icon">
                   <i class="fa-solid fa-chess-pawn payment-icon"></i>
                   <span class="payment-content-info">
@@ -378,7 +378,7 @@
                   </span>
                 </span>
               </div>
-              <div class="col-sm-3 payment second-payment">
+              <div class="col-sm-3 payment second-payment" id="advanced">
                 <span class="payment-plan-icon"
                   ><i class="fa-solid fa-gamepad payment-icon"></i>
                   <span class="payment-content-info">
@@ -392,7 +392,7 @@
                   </span>
                 </span>
               </div>
-              <div class="col-sm-3 payment third-payment">
+              <div class="col-sm-3 payment third-payment" id="pro">
                 <span class="payment-plan-icon">
                   <i class="fa-solid fa-puzzle-piece payment-icon"></i>
                   <span class="payment-content-info">
@@ -763,6 +763,7 @@
               <span class="first-services">
                 <span class="checkbox-services">
                   <span class="arcade-monthly">Arcade (Monthly)</span>
+                  <span class="finishing-selected-plan arcade-monthly"></span>
                   <div class="access">
                     <a href="/" class="change-access">Change</a>
                   </div></span
