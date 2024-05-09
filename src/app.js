@@ -113,18 +113,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const secondGoBack = document.querySelector(".second-go-back");
   const thirdGoBack = document.querySelector(".confirm-go-back");
   const changeAccess = document.querySelector(".change-access");
-  const finishingMonth = document.querySelector(".finishing-month");
-  const finishingYear = document.querySelector(".finishing-year");
-  const finishingSelectedPlan = document.querySelector(
-    ".finishing-selected-plan"
-  );
-
-  const storedPlan = JSON.parse(localStorage.getItem("finishingSelectedPlan"));
-  if (storedPlan) {
-
-  }
-
-  select - plan - step;
 
   submitForm.addEventListener("submit", handleNextPage);
   firstGoBack.addEventListener("click", handlePrevious);
@@ -233,4 +221,31 @@ document.addEventListener("DOMContentLoaded", function () {
       checkBox.dispatchEvent(new Event("change"));
     });
   });
+
+  function updateFinishingUp(planTitle, monthlyPrice, yearlyPrice) {
+    const finishingMonth = document.querySelector(".finishing-month");
+    const finishingYear = document.querySelector(".finishing-year");
+    const finishingSelectedPlan = document.querySelector(
+      ".finishing-selected-plan"
+    );
+
+    finishingSelectedPlan.textContent = `${planTitle} (Monthly)`;
+    finishingMonth.textContent = monthlyPrice;
+    finishingYear.textContent = yearlyPrice;
+
+    const totalMonthlyPrice = parseInt(monthlyPrice.match(/\d+/)[0]) + 1;
+    const totalYearlyPrice = parseInt(yearlyPrice.match(/\d+/)[0]) + 10;
+    document.querySelector(".total-price-value").textContent =
+      totalMonthlyPrice;
+
+    const priceTotalMonthly = document.querySelector(
+      ".price-total.finishing-month"
+    );
+    const priceTotalYearly = document.querySelector(
+      ".price-total.finishing-year"
+    );
+
+    priceTotalMonthly.textContent = `+$${totalMonthlyPrice}/mo`;
+    priceTotalYearly.textContent = `+$${totalYearlyPrice}/yr`;
+  }
 });
