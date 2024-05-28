@@ -113,12 +113,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const secondGoBack = document.querySelector(".second-go-back");
   const thirdGoBack = document.querySelector(".confirm-go-back");
   const changeAccess = document.querySelector(".change-access");
-  const selectedPaymentSection = document.getElementById("");
-  const selectedAddOnSection = document.getElementById("");
-  const totalPerMonth = document.querySelector("");
-  const monthPriceElement = document.querySelector("");
-  const yearPriceElement = document.querySelector("");
-  const confirmButton = document.querySelector("");
+  const selectedPaymentSection = document.getElementById("arcade");
+  const confirmButton = document.querySelector(".confirm-button");
 
   submitForm.addEventListener("submit", handleNextPage);
   firstGoBack.addEventListener("click", handlePrevious);
@@ -228,8 +224,65 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  //retrieve selected payment plan from local storage
+  //Function to ensure the choise on selected plan and add onss appear on the finishing up section
 
-  
+  document.addEventListener("DOMContentLoaded", function () {
+    function updateFinishingUp(
+      titleMonthly,
+      titleYearly,
+      monthlyPrice,
+      yearlyPrice,
+      addOns
+    ) {
+      const planTitleMonthly = document.querySelector(".arcade-monthly");
+      const planTitleYearly = document.querySelector(".arcade-yearly");
+      const finishingMonthlyPrice = document.querySelector(".finishing-month");
+      const finishingYearlyPrice = document.querySelector(".finishing-year");
+      const selectedPaymentSection = document.getElementById(
+        "selected-payment-section"
+      );
 
+      planTitleMonthly.textContent = titleMonthly;
+      planTitleYearly.textContent = titleYearly;
+      finishingMonthlyPrice.textContent = `$${monthlyPrice}/mo`;
+      finishingYearlyPrice.textContent = `$${yearlyPrice}/yr`;
+
+      //check of a payment plan has been selected
+
+      const selectedPayment = document.querySelector(".payment.active");
+
+      //store selected payment in localStorag
+
+      localStorage.setItem(
+        "selectedPayment",
+        JSON.stringify({
+          monthlyName: titleMonthly,
+          yearlyName: titleYearly,
+          priceMonthly: monthlyPrice,
+          PriceYearly: yearlyPrice,
+        })
+      );
+
+      localStorage.getItem("selectedPayment");
+      if (selectedPayment) {
+        selectedPaymentSection.innerHTML = `
+        <span class="first-services" id="selected-payment-section">
+                <span class="checkbox-services">
+                  <span>
+                    <span class="arcade-monthly">${titleMonthly}</span>
+                    <span class="arcade-yearly plus-year">${titleMonthly}</span>
+                  </span>
+                  <span class="finishing-selected-plan arcade-monthly"></span>
+                  <div class="access">
+                    <a href="/" class="change-access">Change</a>
+                  </div></span
+                ><span class="plus-month plu-plus finishing-month">$${monthlyPrice}/mo</span
+                ><span class="plus-year plus-plus finishing-year"
+                  >$${yearlyPrice}/yr</span
+                ></span
+              >
+        `;
+      }
+    }
   });
+});
