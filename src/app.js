@@ -129,6 +129,21 @@ document.addEventListener("DOMContentLoaded", function () {
     const selectedPayment = document.querySelector(".payment.active");
     console.log("Selected Payment:", selectedPayment);
     if (selectedPayment) {
+      const planTitle = document.querySelector(".title").textContent;
+      const planMonthlyPrice = document.querySelector(".per-month").textContent;
+      const planYearlyPrice = document.querySelector(".per-year").textContent;
+
+      // Store selected payment plan in localStorage
+      localStorage.setItem(
+        "selectedPayment",
+        JSON.stringify({
+          name: planTitle,
+          priceMonthly: planMonthlyPrice,
+          priceYearly: planYearlyPrice,
+        })
+      );
+
+      //navigate toadd-ons page
       selectPlan.style.display = "none";
       firstStepContainer.style.display = "none";
       addOns.style.display = "block";
@@ -205,6 +220,33 @@ document.addEventListener("DOMContentLoaded", function () {
       alert("Please select an add-on");
     }
 
+    const selectedAddOns = [];
+    const addsOnCheckboxes = document.querySelectorAll(".checkbox:checked");
+    addsOnCheckboxes.forEach(function (addsOnCheckbox) {
+      const addOn = addsOnCheckbox.closest(".online-service");
+      const addOnName = addOn.querySelector(".services").textContent;
+      const addOnPriceMonthly = addOn.querySelector(".plus-month").textContent;
+      const addOnPriceYearly = addOn.querySelector(".plus-year").textContent;
+
+      selectedAddOns.push({
+        addsOnName: addOnName,
+        addsOnPriceMonthly: addOnPriceMonthly,
+        addsOnPriceYearly: addOnPriceYearly,
+      });
+
+      // Store the selected add-ons in localStorage
+      if (selectedAddOns.length > 0) {
+        localStorage.setItem("selectedAddOns", JSON.stringify(selectedAddOns));
+
+        //Navigate to finishing up page
+        addOns.style.display = "none";
+        firstStepContainer.style.display = "none";
+        finishingUp.style.display = "block";
+      } else {
+        alert("Please select an add-on");
+      }
+    });
+
     const checkBoxes = document.querySelectorAll(".checkbox");
     console.log("Checkboxes:", checkBoxes);
 
@@ -224,65 +266,44 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  //Function to ensure the choise on selected plan and add onss appear on the finishing up section
+  // Update the finishing up section
+  function updateFinishingUp() {
+    const selectedPaymentSection = document.getElementById(
+      "selectedPaymentSection"
+    );
+    const selectedAddOnsSection = document.getElementById(
+      "selectedAddOnsSection"
+    );
+    const planTitleMonthly = document.querySelector(".arcade-monthly");
+    const planTitleYearly = document.querySelector(".arcade-yearly");
+    const finishingMonthlyPrice = document.querySelector(".finishing-month");
+    const finishingYearlyPrice = document.querySelector(".finishing-year");
 
-  document.addEventListener("DOMContentLoaded", function () {
-    function updateFinishingUp(
-      titleMonthly,
-      titleYearly,
-      monthlyPrice,
-      yearlyPrice,
-      addOns
-    ) {
-      const planTitleMonthly = document.querySelector(".arcade-monthly");
-      const planTitleYearly = document.querySelector(".arcade-yearly");
-      const finishingMonthlyPrice = document.querySelector(".finishing-month");
-      const finishingYearlyPrice = document.querySelector(".finishing-year");
-      const selectedPaymentSection = document.getElementById(
-        "selected-payment-section"
-      );
+    planTitleMonthly.textContent = titleMonthly;
+    planTitleYearly.textContent = titleYearly;
+    finishingMonthlyPrice.textContent = `$${monthlyPrice}/mo`;
+    finishingYearlyPrice.textContent = `$${yearlyPrice}/yr`;
 
-      planTitleMonthly.textContent = titleMonthly;
-      planTitleYearly.textContent = titleYearly;
-      finishingMonthlyPrice.textContent = `$${monthlyPrice}/mo`;
-      finishingYearlyPrice.textContent = `$${yearlyPrice}/yr`;
-
-      //check of a payment plan has been selected
-
-      const selectedPayment = document.querySelector(".payment.active");
-
-      //store selected payment in localStorag
-
-      localStorage.setItem(
-        "selectedPayment",
-        JSON.stringify({
-          monthlyName: titleMonthly,
-          yearlyName: titleYearly,
-          priceMonthly: monthlyPrice,
-          PriceYearly: yearlyPrice,
-        })
-      );
-
-      localStorage.getItem("selectedPayment");
-      if (selectedPayment) {
-        selectedPaymentSection.innerHTML = `
+    // Retrieve selected payment plan from localStorage
+    const selectedPayment = localStorage.getItem("selectedPayment");
+    if (selectedPayment) {
+      selectedPaymentSection.innerHTML = `
         <span class="first-services" id="selected-payment-section">
                 <span class="checkbox-services">
                   <span>
-                    <span class="arcade-monthly">${titleMonthly}</span>
-                    <span class="arcade-yearly plus-year">${titleMonthly}</span>
+                    <span class="arcade-monthly">${selectedPayment.planTitle}(Monthly)</span>
+                    <span class="arcade-yearly plus-year">${selectedPayment.planTitle}(Yearly)</span>
                   </span>
                   <span class="finishing-selected-plan arcade-monthly"></span>
                   <div class="access">
                     <a href="/" class="change-access">Change</a>
                   </div></span
-                ><span class="plus-month plu-plus finishing-month">$${monthlyPrice}/mo</span
+                ><span class="plus-month plu-plus finishing-month">$${selectedPayment.priceMonthly}/mo</span
                 ><span class="plus-year plus-plus finishing-year"
-                  >$${yearlyPrice}/yr</span
+                  >$${selectedPayment.priceYearly}/yr</span
                 ></span
               >
         `;
-      }
     }
-  });
+  }
 });
