@@ -113,8 +113,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const secondGoBack = document.querySelector(".second-go-back");
   const thirdGoBack = document.querySelector(".confirm-go-back");
   const changeAccess = document.querySelector(".change-access");
-  const selectedPaymentSection = document.getElementById("arcade");
   const confirmButton = document.querySelector(".confirm-button");
+  const finishingUpSection = document.querySelector(".finishing-up");
 
   submitForm.addEventListener("submit", handleNextPage);
   firstGoBack.addEventListener("click", handlePrevious);
@@ -267,27 +267,21 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // Update the finishing up section
-  function updateFinishingUp() {
-    const selectedPaymentSection = document.getElementById(
-      "selectedPaymentSection"
-    );
-    const selectedAddOnsSection = document.getElementById(
-      "selectedAddOnsSection"
-    );
-    const planTitleMonthly = document.querySelector(".arcade-monthly");
-    const planTitleYearly = document.querySelector(".arcade-yearly");
-    const finishingMonthlyPrice = document.querySelector(".finishing-month");
-    const finishingYearlyPrice = document.querySelector(".finishing-year");
+  const selectedPaymentSection = document.getElementById(
+    "selectedPaymentSection"
+  );
+  const selectedAddOnsSection = document.getElementById(
+    "selectedAddOnsSection"
+  );
+  const planTitleMonthly = document.querySelector(".arcade-monthly");
+  const planTitleYearly = document.querySelector(".arcade-yearly");
+  const finishingMonthlyPrice = document.querySelector(".finishing-month");
+  const finishingYearlyPrice = document.querySelector(".finishing-year");
 
-    planTitleMonthly.textContent = titleMonthly;
-    planTitleYearly.textContent = titleYearly;
-    finishingMonthlyPrice.textContent = `$${monthlyPrice}/mo`;
-    finishingYearlyPrice.textContent = `$${yearlyPrice}/yr`;
-
-    // Retrieve selected payment plan from localStorage
-    const selectedPayment = localStorage.getItem("selectedPayment");
-    if (selectedPayment) {
-      selectedPaymentSection.innerHTML = `
+  // Retrieve selected payment plan from localStorage
+  const selectedPayment = localStorage.getItem("selectedPayment");
+  if (selectedPayment) {
+    selectedPaymentSection.innerHTML = `
         <span class="first-services" id="selected-payment-section">
                 <span class="checkbox-services">
                   <span>
@@ -304,6 +298,26 @@ document.addEventListener("DOMContentLoaded", function () {
                 ></span
               >
         `;
-    }
   }
+
+  // Retrieve selected add-ons from localStorage
+  const selectedAddOns = JSON.parse(localStorage.getItem(selectedAddOns));
+  if (selectedAddOns && selectedAddOnsSection.length > 0) {
+    selectedAddOns.forEach((addOn) => {
+      selectedAddOnsSection.innerHTML += `
+       <div class="finishing-up-change">
+          <span class="finish-service">${addOn.name}</span>
+          <span class="plus-month online-plus-plus finishing-month">${addOn.priceMonthly}</span>
+          <span class="plus-year online-plus-plus finishing-year">${addOn.priceYearly}</span>
+        </div>
+      `;
+    });
+  }
+
+  // Calculate total price
+  let totalPricePerMonth = 0;
+  let totalPricePerYear = 0;
 });
+
+//
+//
