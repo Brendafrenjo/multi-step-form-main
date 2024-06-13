@@ -82,21 +82,21 @@ handleFinishingPrice = (e) => {
   const monthlyPrice = document.querySelectorAll(".finishing-month");
   const yearlyPrice = document.querySelectorAll(".finishing-year");
 
-  if (yearlyPrice[0].style.display === "none") {
-    monthlyPrice.forEach(function (month) {
-      month.style.display = "none";
-    });
-
-    yearlyPrice.forEach(function (year) {
-      year.style.display = "inline-block";
-    });
-  } else {
+  if (yearlyPrice[0].style.display === "inline-block") {
     monthlyPrice.forEach(function (month) {
       month.style.display = "inline-block";
     });
 
     yearlyPrice.forEach(function (year) {
       year.style.display = "none";
+    });
+  } else {
+    monthlyPrice.forEach(function (month) {
+      month.style.display = "none";
+    });
+
+    yearlyPrice.forEach(function (year) {
+      year.style.display = "inline-block";
     });
   }
 };
@@ -127,15 +127,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     //Check if a payment plan has been selected
     const selectedPayment = document.querySelector(".payment.active");
-    console.log("Selected Payment:", selectedPayment);
     if (selectedPayment) {
-      const planTitle = document.querySelector(".title").textContent;
-      const planMonthlyPrice = document.querySelector(".per-month").textContent;
-      const planYearlyPrice = document.querySelector(".per-year").textContent;
+      const planTitle = selectedPayment.querySelector(".title").textContent;
+      const planMonthlyPrice = selectedPayment.querySelector(".per-month").textContent;
+      const planYearlyPrice = selectedPayment.querySelector(".per-year").textContent;
 
       // Store selected payment plan in localStorage
       localStorage.setItem(
-        "selectedPayment",
+        "paymentSelected",
         JSON.stringify({
           name: planTitle,
           priceMonthly: planMonthlyPrice,
@@ -143,12 +142,20 @@ document.addEventListener("DOMContentLoaded", function () {
         })
       );
 
+      //Confirm storage in the console
+      console.log("Payment plan stored in localStorage:", {
+        name: planTitle,
+        priceMonthly: planMonthlyPrice,
+        priceYearly: planYearlyPrice,
+      });
+
       //navigate toadd-ons page
       selectPlan.style.display = "none";
       firstStepContainer.style.display = "none";
       addOns.style.display = "block";
     } else {
       alert("Please select a payment plan");
+      console.log("No active payment plan selected.");
     }
   });
 
@@ -211,14 +218,6 @@ document.addEventListener("DOMContentLoaded", function () {
     event.preventDefault();
 
     //To check if any checkbox has been checked
-    const selectedCheckBox = document.querySelector(".checkbox:checked");
-    if (selectedCheckBox) {
-      addOns.style.display = "none";
-      firstStepContainer.style.display = "none";
-      finishingUp.style.display = "block";
-    } else {
-      alert("Please select an add-on");
-    }
 
     const selectedAddOns = [];
     const addsOnCheckboxes = document.querySelectorAll(".checkbox:checked");
@@ -266,22 +265,22 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Update the finishing up section
-  const selectedPaymentSection = document.getElementById(
-    "selectedPaymentSection"
-  );
-  const selectedAddOnsSection = document.getElementById(
-    "selectedAddOnsSection"
-  );
-  const planTitleMonthly = document.querySelector(".arcade-monthly");
-  const planTitleYearly = document.querySelector(".arcade-yearly");
-  const finishingMonthlyPrice = document.querySelector(".finishing-month");
-  const finishingYearlyPrice = document.querySelector(".finishing-year");
+  confirmButton.addEventListener("click", function (event) {
+    event.preventDefault();
 
-  // Retrieve selected payment plan from localStorage
-  const selectedPayment = localStorage.getItem("selectedPayment");
-  if (selectedPayment) {
-    selectedPaymentSection.innerHTML = `
+    // Update the finishing up section
+    const selectedPaymentSection = document.getElementById(
+      "selected-payment-section"
+    );
+    const selectedAddOnsSection = document.getElementById(
+      "selectedAddOnsSection"
+    );
+
+    // Retrieve selected payment plan from localStorage
+    const paymentSelected = localStorage.getItem("paymentSelected");
+    if (paymentSelected) {
+      const selectedPayment = JSON.parse("paymentSelected");
+      selectedPaymentSection.innerHTML = `
         <span class="first-services" id="selected-payment-section">
                 <span class="checkbox-services">
                   <span>
@@ -298,25 +297,26 @@ document.addEventListener("DOMContentLoaded", function () {
                 ></span
               >
         `;
-  }
+    }
 
-  // Retrieve selected add-ons from localStorage
-  const selectedAddOns = JSON.parse(localStorage.getItem(selectedAddOns));
-  if (selectedAddOns && selectedAddOnsSection.length > 0) {
-    selectedAddOns.forEach((addOn) => {
-      selectedAddOnsSection.innerHTML += `
+    // Retrieve selected add-ons from localStorage
+    const selectedAddOns = JSON.parse(localStorage.getItem(selectedAddOns));
+    if (selectedAddOns && selectedAddOnsSection.length > 0) {
+      selectedAddOns.forEach((addOn) => {
+        selectedAddOnsSection.innerHTML += `
        <div class="finishing-up-change">
           <span class="finish-service">${addOn.name}</span>
           <span class="plus-month online-plus-plus finishing-month">${addOn.priceMonthly}</span>
           <span class="plus-year online-plus-plus finishing-year">${addOn.priceYearly}</span>
         </div>
       `;
-    });
-  }
+      });
+    }
 
-  // Calculate total price
-  let totalPricePerMonth = 0;
-  let totalPricePerYear = 0;
+    // Calculate total price
+    let totalPricePerMonth = 0;
+    let totalPricePerYear = 0;
+  });
 });
 
 //
