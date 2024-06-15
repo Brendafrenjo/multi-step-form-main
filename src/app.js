@@ -316,6 +316,18 @@ document.addEventListener("DOMContentLoaded", function () {
     // Calculate total price
     let totalPricePerMonth = 0;
     let totalPricePerYear = 0;
+
+    if (selectedPayment) {
+      totalPricePerMonth += parseFloat(
+        selectedPayment.priceMonthly.replace(/[^\d.-]/g, "")
+      );
+      totalPricePerYear += parseFloat(
+        selectedPayment.priceYearly.replace(/[^\d.-]/g, "")
+      );
+    }
+    // Display total price
+    monthPriceElement.textContent = `+$${totalPricePerMonth.toFixed(2)}/mo`;
+    yearPriceElement.textContent = `+$${totalPricePerYear.toFixed(2)}/yr`;
   });
 });
 
