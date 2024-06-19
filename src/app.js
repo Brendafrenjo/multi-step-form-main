@@ -114,7 +114,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const thirdGoBack = document.querySelector(".confirm-go-back");
   const changeAccess = document.querySelector(".change-access");
   const confirmButton = document.querySelector(".confirm-button");
-  const finishingUpSection = document.querySelector(".finishing-up");
+  const thankYou = document.querySelector(".thank-you");
 
   submitForm.addEventListener("submit", handleNextPage);
   firstGoBack.addEventListener("click", handlePrevious);
@@ -275,26 +275,18 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  if (confirmButton) {
-    confirmButton.addEventListener("click", function (event) {
-      event.preventDefault();
+  //Retrieve selected payment plan and add-ons from localStorage
+  const paymentSelected = JSON.parse(localStorage.getItem("paymentSelected"));
+  const selectedAddOns = JSON.parse(localStorage.getItem("selectedAddOns"));
 
-      // Update the finishing up section
+  // Function to populate selected payment plan
+  function populatePaymentPlanSection() {
+    if (paymentSelected) {
       const selectedPaymentSection = document.getElementById(
         "selected-payment-section"
       );
-      const selectedAddOnsSection = document.getElementById(
-        "selected-add-ons-section"
-      );
-      const monthPriceElement = document.querySelector(".finishing-month");
-      const yearPriceElement = document.querySelector(".finishing-year");
-
-      // Retrieve selected payment plan from localStorage
-      const paymentSelected = JSON.parse(
-        localStorage.getItem("paymentSelected")
-      );
-      if (paymentSelected) {
-        selectedPaymentSection.innerHTML = `
+      selectedPaymentSection.innerHTML = ""; // Clear any existing add-ons
+      selectedPaymentSection.innerHTML = `
         <span class="first-services" id="selected-payment-section">
                 <span class="checkbox-services">
                   <span>
@@ -305,63 +297,77 @@ document.addEventListener("DOMContentLoaded", function () {
                   <div class="access">
                     <a href="/" class="change-access">Change</a>
                   </div></span
-                ><span class="plus-month plu-plus finishing-month">$${paymentSelected.priceMonthly}/mo</span
+                ><span class="plus-month plus-plus finishing-month">$${paymentSelected.priceMonthly}</span
                 ><span class="plus-year plus-plus finishing-year"
-                  >$${paymentSelected.priceYearly}/yr</span
+                  >$${paymentSelected.priceYearly}</span
                 ></span
               >
         `;
-      }
+    }
+  }
 
-      // Retrieve selected add-ons from localStorage
-      const selectedAddOns = JSON.parse(localStorage.getItem(selectedAddOns));
-      if (selectedAddOns && selectedAddOnsSection.length > 0) {
-        selectedAddOnsSection.innerHTML = ""; // Clear any existing add-ons
-        selectedAddOns.forEach((addOn) => {
-          selectedAddOnsSection.innerHTML += `
+  // To populate selected add-ons
+  const selectedAddOnsSection = document.getElementById(
+    "selected-add-ons-section"
+  );
+  if (selectedAddOns && selectedAddOnsSection.length > 0) {
+    selectedAddOnsSection.innerHTML = ""; // Clear any existing add-ons
+    selectedAddOns.forEach((addOn) => {
+      selectedAddOnsSection.innerHTML += `
        <div class="finishing-up-change">
           <span class="finish-service">${addOn.addsOnName}</span>
           <span class="plus-month online-plus-plus finishing-month">${addOn.addsOnPriceMonthly}</span>
           <span class="plus-year online-plus-plus finishing-year">${addOn.addsOnPriceYearly}</span>
         </div>
       `;
-        });
-      }
-
-      // Calculate total price
-      let totalPricePerMonth = 0;
-      let totalPricePerYear = 0;
-
-      if (selectedPayment) {
-        totalPricePerMonth += parseFloat(
-          selectedPayment.priceMonthly.replace(/[^\d.-]/g, "")
-        );
-        totalPricePerYear += parseFloat(
-          selectedPayment.priceYearly.replace(/[^\d.-]/g, "")
-        );
-      }
-
-      if (selectedAddOns && selectedAddOns.length > 0) {
-        selectedAddOns.forEach((addOn) => {
-          totalPricePerMonth += parseFloat(
-            addOn.priceMonthly.replace(/[^\d.-]/g, "")
-          );
-          totalPricePerYear += parseFloat(
-            addOn.priceYearly.replace(/[^\d.-]/g, "")
-          );
-        });
-      }
-
-      // Display total price
-      monthPriceElement.textContent = `+$${totalPricePerMonth.toFixed(2)}/mo`;
-      yearPriceElement.textContent = `+$${totalPricePerYear.toFixed(2)}/yr`;
-
-      // Event listener for "Confirm" button
-      document
-        .querySelector(".confirm-button")
-        .addEventListener("click", function () {
-          alert("Confirmed! Your selections have been saved.");
-        });
     });
   }
+
+  //To calculate and display total monthly and yearly costs
+  let totalPricePerMonth = 0;
+  let totalPricePerYear = 0;
+
+  if (selectedPayment) {
+    totalPricePerMonth += parseFloat(
+      selectedPayment.priceMonthly.replace(/[^\d.-]/g, "")
+    );
+    totalPricePerYear += parseFloat(
+      selectedPayment.priceYearly.replace(/[^\d.-]/g, "")
+    );
+  }
+
+  if (selectedAddOns && selectedAddOns.length > 0) {
+    selectedAddOns.forEach((addOn) => {
+      totalPricePerMonth += parseFloat(
+        addOn.priceMonthly.replace(/[^\d.-]/g, "")
+      );
+      totalPricePerYear += parseFloat(
+        addOn.priceYearly.replace(/[^\d.-]/g, "")
+      );
+    });
+  }
+
+   const monthPriceElement = document.querySelector(".finishing-month");
+   const yearPriceElement = document.querySelector(".finishing-year");
+  // Display total price
+  monthPriceElement.textContent = `+$${totalPricePerMonth.toFixed(2)}/mo`;
+  yearPriceElement.textContent = `+$${totalPricePerYear.toFixed(2)}/yr`;
+
+  // Event listener for "Confirm" button
+  document
+    .querySelector(".confirm-button")
+    .addEventListener("click", function () {
+      alert("Confirmed! Your selections have been saved.");
+    });
+
+    confirmButton.addEventListener("click", function (event) {
+      event.preventDefault();
+      //Navigate to thank you page
+      finishingUp.style.display = "none";
+       thankYou.style.display = "block";
+    });
+  
+  populatePaymentPlanSection();
 });
+
+//
